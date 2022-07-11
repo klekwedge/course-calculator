@@ -1,7 +1,7 @@
 import { Box, Button } from "@chakra-ui/react";
 
 function Numbers(props) {
-  const nums = Array.from(Array(10).keys()).map((number) => {
+  const nums = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', ','].map((number) => {
     return (
       <Button
         onClick={(e) => {

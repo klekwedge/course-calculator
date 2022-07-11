@@ -1,9 +1,13 @@
 import { Input, Text, Flex } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function InputCalc(props) {
   const [counts, setCounts] = useState("");
   const [result, setResult] = useState("");
+
+  useEffect(() => {
+    document.querySelector("input").focus();
+  }, []);
 
   function updateCounts(e) {
     const expressions = /\+|\-|\/|\*|=|\$|[A-z]| /;
