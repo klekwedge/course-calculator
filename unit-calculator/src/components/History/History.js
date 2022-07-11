@@ -1,5 +1,4 @@
-import { Box, Text, Button, Input, Flex } from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Button } from "@chakra-ui/react";
 
 function History(props) {
   const results = props.data.map((result) => {

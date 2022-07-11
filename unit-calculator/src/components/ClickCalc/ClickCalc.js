@@ -1,5 +1,5 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import { Button, Flex, Text } from "@chakra-ui/react";
 
 import Numbers from "../Numbers/Numbers";
 import CountButton from "../CountButton/CountButton";

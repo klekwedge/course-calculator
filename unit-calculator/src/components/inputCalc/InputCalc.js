@@ -1,5 +1,5 @@
-import { Input, Text, Flex } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
+import { Input, Text, Flex } from "@chakra-ui/react";
 
 function InputCalc(props) {
   const [counts, setCounts] = useState("");

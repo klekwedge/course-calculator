@@ -1,5 +1,5 @@
-import { Box, Text, Button, Input, Flex } from "@chakra-ui/react";
 import { useState } from "react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 
 import InputCalc from "../InputCalc/InputCalc";
 import ClickCalc from "../ClickCalc/ClickCalc";
