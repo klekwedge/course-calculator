@@ -20,6 +20,7 @@ function CountButton(props) {
       w="40px"
       h="40px"
       margin="4px"
+      bg='blue.400'
     >
       {props.expression}
     </Button>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import "./App.css";
 import Numbers from "../numbers/Numbers";
 import CountButton from "../countButton/CountButton";
@@ -79,10 +79,20 @@ function App() {
               />
               <CountButton
                 data={counts}
-                expression={"/  "}
+                expression={"/"}
                 onClick={applyExpression}
               />
             </Box>
+            <Button
+              alignSelf="start"
+              bg="tomato"
+              m="4px"
+              onClick={() => {
+                setResult(eval(counts));
+              }}
+            >
+              =
+            </Button>
           </Box>
         </Box>
       </Box>
