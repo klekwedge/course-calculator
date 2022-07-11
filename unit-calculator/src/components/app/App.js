@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Text, Flex } from "@chakra-ui/react";
 import "./App.css";
+
 import Numbers from "../numbers/Numbers";
 import CountButton from "../countButton/CountButton";
+import InputCalc from "../inputCalc/InputCalc";
 
 function App() {
   const [counts, setCounts] = useState("0");
@@ -15,23 +17,21 @@ function App() {
 
   return (
     <div className="App">
-      <Box
-        display="flex"
+      <Flex
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
         h="100vh"
       >
-        <Box
-          display="flex"
+        <Flex
           gap="5px"
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
           w="200px"
         >
-          <Box
-            display="flex"
+          <InputCalc> </InputCalc>
+          <Flex
             w="100%"
             justifyContent="between"
             bg="gray.50"
@@ -58,10 +58,10 @@ function App() {
             >
               {result}
             </Text>
-          </Box>
-          <Box display="flex" alignItems="center">
+          </Flex>
+          <Flex alignItems="center">
             <Numbers data={counts} onClick={setCounts}></Numbers>
-            <Box display="flex" flexDirection="column">
+            <Flex flexDirection="column">
               <CountButton
                 data={counts}
                 expression={"+"}
@@ -82,7 +82,7 @@ function App() {
                 expression={"/"}
                 onClick={applyExpression}
               />
-            </Box>
+            </Flex>
             <Button
               alignSelf="start"
               bg="tomato"
@@ -93,9 +93,9 @@ function App() {
             >
               =
             </Button>
-          </Box>
-        </Box>
-      </Box>
+          </Flex>
+        </Flex>
+      </Flex>
     </div>
   );
 }
