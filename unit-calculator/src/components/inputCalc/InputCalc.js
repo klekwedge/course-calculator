@@ -28,6 +28,13 @@ function InputCalc(props) {
     setCounts(e.target.value);
   }
 
+  function sendDataToHistory(e) {
+    if (e.nativeEvent.key === "Enter") {
+      props.onKeyDown(counts);
+      setCounts('')
+    }
+  }
+
   return (
     <Flex bg="gray.300" p="0.5" borderRadius="5">
       <Input
@@ -36,6 +43,9 @@ function InputCalc(props) {
         border="transparent"
         onChange={(e) => {
           updateCounts(e);
+        }}
+        onKeyDown={(e) => {
+          sendDataToHistory(e);
         }}
       ></Input>
       <Text textColor="tomato">{result}</Text>

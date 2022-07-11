@@ -4,7 +4,7 @@ import { useState } from "react";
 import Numbers from "../Numbers/Numbers";
 import CountButton from "../CountButton/CountButton";
 
-function ClickCalc() {
+function ClickCalc(props) {
   const [counts, setCounts] = useState("0");
   const [result, setResult] = useState("");
 
@@ -75,6 +75,7 @@ function ClickCalc() {
           onClick={() => {
             setResult(eval(counts));
             setCounts('0');
+            props.onClick(counts)
           }}
         >
           =

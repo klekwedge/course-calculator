@@ -3,9 +3,19 @@ import { useState } from "react";
 
 import InputCalc from "../InputCalc/InputCalc";
 import ClickCalc from "../ClickCalc/ClickCalc";
+import History from "../History/History";
 
 function Calculator() {
   const [calcType, setCalcType] = useState("ClickCalc");
+  const [history, setHistory] = useState([]);
+
+  function updateHistory(calcResult) {
+    if (history.length > 6) {
+      history.shift();
+    }
+    setHistory(history.concat(eval(calcResult)));
+  }
+
   let calculator;
 
   function calcTypeChange() {
@@ -15,13 +25,13 @@ function Calculator() {
   }
   switch (calcType) {
     case "ClickCalc":
-      calculator = <ClickCalc />;
+      calculator = <ClickCalc onClick={updateHistory} />;
       break;
     case "InputCalc":
-      calculator = <InputCalc />;
+      calculator = <InputCalc onKeyDown={updateHistory} />;
       break;
     default:
-      calculator = <ClickCalc />;
+      calculator = <ClickCalc onClick={updateHistory} />;
       break;
   }
 
@@ -41,6 +51,7 @@ function Calculator() {
       >
         <Flex flexDirection="column" justifyContent="center" m="10px">
           <Button onClick={calcTypeChange}>Change CalcType</Button>
+          <History data={history}></History>
           <Box m="10px"> {calculator}</Box>
         </Flex>
       </Flex>
