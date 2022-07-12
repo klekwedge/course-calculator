@@ -29,17 +29,46 @@ function Dragging(props) {
           return;
         }
 
+        function enterDroppable(elem) {
+          draggable.onmouseup = function () {
+            draggable.style.display = "none";
+            props.setResult(
+              eval(`${props.result} ${elem.innerHTML} ${draggable.innerHTML}`)
+            );
+
+            document.removeEventListener("mousemove", onMouseMove);
+            draggable.onmouseup = null;
+            draggable = null;
+            return;
+          };
+          draggable.style.cursor = "copy";
+        }
+
+        function leaveDroppable(elem) {
+          elem.style.background = "";
+          draggable.style.cursor = "default";
+        }
+
         let droppableBelow = elemBelow.closest(".droppable");
         if (currentDroppable !== droppableBelow) {
           if (currentDroppable) {
-            // leaveDroppable(currentDroppable);
+            leaveDroppable(currentDroppable);
           }
           currentDroppable = droppableBelow;
           if (currentDroppable) {
-            // enterDroppable(currentDroppable);
+            enterDroppable(currentDroppable);
           }
         }
       }
+
+      document.addEventListener("mousemove", onMouseMove);
+      draggable.onmouseup = function () {
+        draggable.style.display = "none";
+        document.removeEventListener("mousemove", onMouseMove);
+        props.setHistory(draggable.innerHTML);
+        draggable.onmouseup = null;
+        draggable = null;
+      };
     };
   }
 
