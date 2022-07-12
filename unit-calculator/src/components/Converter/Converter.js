@@ -1,40 +1,94 @@
 import { useState, useRef } from "react";
-import { Select, Flex, Input, Button, Text } from "@chakra-ui/react";
+import { Select, Flex, Input, Button, Text, Box, List } from "@chakra-ui/react";
+
+import { SlideFade, useDisclosure } from "@chakra-ui/react";
+import { SettingsIcon } from "@chakra-ui/icons";
+
+import Distance from "./../Distance/Distance";
+import Money from "../Money/Money";
+
+function Menu(props) {
+  const { isOpen, onToggle } = useDisclosure();
+
+  return (
+    <Flex zIndex={1000}>
+      <SettingsIcon
+        w="45px"
+        h="45px"
+        p="5px"
+        m="5px"
+        cursor="pointer"
+        borderRadius="5px"
+        onClick={onToggle}
+      />
+      <SlideFade in={isOpen} offsetY="-20px" unmountOnExit>
+        <Flex
+          bg="gray.100"
+          p="10px"
+          m="4px"
+          borderRadius="8px"
+          w="160px"
+          position="absolute"
+        >
+          <List>
+            <Button
+              onClick={() => {
+                props.onClick("Money");
+              }}
+            >
+              Валюта
+            </Button>
+            <Button
+              onClick={() => {
+                props.onClick("Distance");
+              }}
+            >
+              Дистанция
+            </Button>
+          </List>
+        </Flex>
+      </SlideFade>
+    </Flex>
+  );
+}
 
 function Converter() {
+  const [mode, setMode] = useState("Distance");
   const [input, setInput] = useState(0);
   const [result, setResult] = useState(0);
 
-  const first = useRef();
-  const second = useRef();
 
-  function convert() {
-    if (first.current.value === "Meters") {
-      switch (second.current.value) {
-        case "Centimeters":
-          setResult(input * 100);
-          break;
-        case "Meters":
-          setResult(input);
-          break;
-        default:
-          setResult(input);
-          break;
-      }
-    } else if (first.current.value === "Centimeters") {
-      switch (second.current.value) {
-        case "Centimeters":
-          setResult(input);
-          break;
-        case "Meters":
-          setResult(input / 100);
-          break;
-        default:
-          setResult(input);
-          break;
-      }
-    }
+  
+
+  let converter;
+
+  switch (mode) {
+    case "Distance":
+      converter = (
+        <Distance
+          setInput={setInput}
+          // data={dataDistance}
+        />
+      );
+      break;
+    case "Money":
+      converter = (
+        <Money
+          setInput={setInput}
+          // data={dataMoney}
+        />
+      );
+      break;
+    default:
+      converter = (
+        <Distance
+          setInput={setInput}
+          // data={dataDistance}
+        />
+      );
+      break;
   }
+
   return (
     <Flex
       alignItems="center"
@@ -43,34 +97,9 @@ function Converter() {
       gap="10px"
       w="100%"
     >
-      <Flex alignItems='center' gap='5px'>
-        <Input
-          type="number"
-          w="50%"
-          onChange={(e) => {
-            setInput(e.target.value);
-          }}
-        />
-        <Select size="md" ref={first}>
-          <option value="Centimeters">Centimeters</option>
-          <option value="Meters">Meters</option>
-        </Select>
-      </Flex>
-
-      <Flex alignItems='center' gap='5px'>
-        <Text>{result}</Text>
-        <Select size="md" ref={second}>
-          <option value="Centimeters">Centimeters</option>
-          <option value="Meters">Meters</option>
-        </Select>
-      </Flex>
-      <Button
-          onClick={() => {
-            convert();
-          }}
-        >
-          Convert
-        </Button>
+      <Menu onClick={setMode}></Menu>
+      <Text>{result}</Text>
+      {converter}
     </Flex>
   );
 }
