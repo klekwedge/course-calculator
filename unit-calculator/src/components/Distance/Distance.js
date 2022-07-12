@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Select, Flex, Input, Button, Text } from "@chakra-ui/react";
+import Convertible from "./../Convertible/Convertible";
 
 function Distance(props) {
   const [input, setInput] = useState(0);
@@ -38,15 +39,16 @@ function Distance(props) {
     }
   }
 
-  const selection = props.data.map((e) => {
-    return (
-      <option key={e} value={e}>
-        {e}
-      </option>
-    );
-  });
-
-  return <></>;
+  return (
+    <Convertible
+      data={dataDistance}
+      convertFunc={convert}
+      firstRef={first}
+      secondRef={second}
+      result={result}
+      setInput={setInput}
+    />
+  );
 }
 
 export default Distance;

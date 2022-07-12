@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
-import { Select, Flex, Input, Button, Text } from "@chakra-ui/react";
-import getData from "./../../parser.js";
+// import getData from "./../../parser.js";
 import Convertible from "../Convertible/Convertible.js";
 
 function Money(props) {
@@ -57,15 +56,16 @@ function Money(props) {
     }
   }
 
-  const selection = props.data.map((e) => {
-    return (
-      <option key={e} value={e}>
-        {e}
-      </option>
-    );
-  });
-
-  // return <Convertible convert={convertMoney} data={dataMoney}></Convertible>;
+  return (
+    <Convertible
+      data={dataMoney}
+      convertFunc={convertMoney}
+      firstRef={first}
+      secondRef={second}
+      result={result}
+      setInput={setInput}
+    ></Convertible>
+  );
 }
 
 export default Money;

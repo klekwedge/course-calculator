@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { Select, Flex, Input, Button, Text, Box, List } from "@chakra-ui/react";
+import { useState } from "react";
+import { Flex, Button, List } from "@chakra-ui/react";
 
 import { SlideFade, useDisclosure } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
@@ -54,38 +54,18 @@ function Menu(props) {
 
 function Converter() {
   const [mode, setMode] = useState("Distance");
-  const [input, setInput] = useState(0);
-  const [result, setResult] = useState(0);
-
-
-  
 
   let converter;
 
   switch (mode) {
     case "Distance":
-      converter = (
-        <Distance
-          setInput={setInput}
-          // data={dataDistance}
-        />
-      );
+      converter = <Distance />;
       break;
     case "Money":
-      converter = (
-        <Money
-          setInput={setInput}
-          // data={dataMoney}
-        />
-      );
+      converter = <Money />;
       break;
     default:
-      converter = (
-        <Distance
-          setInput={setInput}
-          // data={dataDistance}
-        />
-      );
+      converter = <Distance />;
       break;
   }
 
@@ -98,7 +78,6 @@ function Converter() {
       w="100%"
     >
       <Menu onClick={setMode}></Menu>
-      <Text>{result}</Text>
       {converter}
     </Flex>
   );

@@ -1,12 +1,6 @@
-import { useState, useRef } from "react";
 import { Select, Flex, Input, Button, Text } from "@chakra-ui/react";
 
 function Convertible(props) {
-  const [input, setInput] = useState(0);
-  const [result, setResult] = useState(0);
-
-  const first = useRef();
-  const second = useRef();
 
   const selection = props.data.map((e) => {
     return (
@@ -29,23 +23,23 @@ function Convertible(props) {
           type="number"
           w="50%"
           onChange={(e) => {
-            setInput(e.target.value);
+            props.setInput(e.target.value);
           }}
         />
-        <Select size="md" ref={first}>
+        <Select size="md" ref={props.firstRef}>
           {selection}
         </Select>
       </Flex>
 
       <Flex alignItems="center" gap="5px">
-        <Text>{result}</Text>
-        <Select size="md" ref={second}>
+        <Text>{props.result}</Text>
+        <Select size="md" ref={props.secondRef}>
           {selection}
         </Select>
       </Flex>
       <Button
         onClick={() => {
-          props.convert();
+          props.convertFunc();
         }}
       >
         Convert
