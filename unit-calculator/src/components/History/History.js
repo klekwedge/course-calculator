@@ -1,8 +1,12 @@
 import { Box, Button } from "@chakra-ui/react";
 
 function History(props) {
-  const results = props.data.map((result) => {
-    return <Button key={result} m='1'>{result}</Button>;
+  const results = props.data.map((result, index) => {
+    return (
+      <Button key={index} m="1" className="draggable">
+        {result}
+      </Button>
+    );
   });
 
   return <Box>{results}</Box>;

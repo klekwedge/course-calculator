@@ -22,6 +22,7 @@ function CountButton(props) {
       h="40px"
       margin="4px"
       bg='blue.400'
+      className="droppable"
     >
       {props.expression}
     </Button>
