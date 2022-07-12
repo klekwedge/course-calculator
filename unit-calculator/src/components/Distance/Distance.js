@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { Select, Flex, Input, Button, Text } from "@chakra-ui/react";
 import Convertible from "./../Convertible/Convertible";
 
 function Distance(props) {
