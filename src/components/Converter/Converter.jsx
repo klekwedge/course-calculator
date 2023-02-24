@@ -4,7 +4,7 @@ import { Flex, Button, List } from "@chakra-ui/react";
 import { SlideFade, useDisclosure } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 
-import Distance from "./../Distance/Distance";
+import Distance from "../Distance/Distance";
 import Money from "../Money/Money";
 
 function Menu(props) {

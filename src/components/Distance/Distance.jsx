@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
-import Convertible from "./../Convertible/Convertible";
+import Convertible from "../Convertible/Convertible";
 
-function Distance(props) {
+function Distance() {
   const [input, setInput] = useState(0);
   const [result, setResult] = useState(0);
 
