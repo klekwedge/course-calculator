@@ -2,7 +2,11 @@ import { Box, List, Button } from "@chakra-ui/react";
 import { SlideFade, useDisclosure } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
-function Menu(props) {
+interface MenuProps {
+  onClick: (mode: string) => void;
+}
+
+function Menu({ onClick }: MenuProps) {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -26,20 +30,8 @@ function Menu(props) {
           position="absolute"
         >
           <List>
-            <Button
-              onClick={() => {
-                props.onClick("Calculator");
-              }}
-            >
-              Calculator
-            </Button>
-            <Button
-              onClick={() => {
-                props.onClick("Converter");
-              }}
-            >
-              Converter
-            </Button>
+            <Button onClick={() => onClick("Calculator")}>Calculator</Button>
+            <Button onClick={() => onClick("Converter")}>Converter</Button>
           </List>
         </Box>
       </SlideFade>

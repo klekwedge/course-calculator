@@ -9,7 +9,8 @@ function Calculator() {
   const [calcType, setCalcType] = useState("ClickCalc");
   const [history, setHistory] = useState([]);
 
-  function updateHistory(calcResult) {
+  function updateHistory(calcResult: string) {
+
     if (history.length > 6) {
       history.shift();
     }

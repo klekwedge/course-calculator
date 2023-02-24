@@ -7,12 +7,12 @@ function Distance() {
 
   const dataDistance = ["Centimeters", "Meters"];
 
-  const first = useRef();
-  const second = useRef();
+  const first = useRef(null);
+  const second = useRef(null);
 
   function convert() {
-    if (first.current.value === "Meters") {
-      switch (second.current.value) {
+    if (first.current && first.current.value === "Meters") {
+      switch (second.current && second.current.value) {
         case "Centimeters":
           setResult(input * 100);
           break;

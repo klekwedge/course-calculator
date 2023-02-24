@@ -7,7 +7,11 @@ import { SettingsIcon } from "@chakra-ui/icons";
 import Distance from "../Distance/Distance";
 import Money from "../Money/Money";
 
-function Menu(props) {
+interface ConverterMenuProps {
+  onClick: (mode: string) => void;
+}
+
+function ConverterMenu({ onClick }: ConverterMenuProps) {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -31,20 +35,8 @@ function Menu(props) {
           position="absolute"
         >
           <List>
-            <Button
-              onClick={() => {
-                props.onClick("Money");
-              }}
-            >
-              Валюта
-            </Button>
-            <Button
-              onClick={() => {
-                props.onClick("Distance");
-              }}
-            >
-              Дистанция
-            </Button>
+            <Button onClick={() => onClick("Money")}>Валюта</Button>
+            <Button onClick={() => onClick("Distance")}>Дистанция</Button>
           </List>
         </Flex>
       </SlideFade>
@@ -77,7 +69,7 @@ function Converter() {
       gap="10px"
       w="100%"
     >
-      <Menu onClick={setMode}></Menu>
+      <ConverterMenu onClick={setMode}></ConverterMenu>
       {converter}
     </Flex>
   );

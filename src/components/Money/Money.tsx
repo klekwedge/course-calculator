@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 // import getData from "./../../parser.js";
-import Convertible from "../Convertible/Convertible.jsx";
+import Convertible from "../Convertible/Convertible.js";
 
 function Money() {
   const [input, setInput] = useState(0);
@@ -29,8 +29,8 @@ function Money() {
   // }
 
   function convertMoney() {
-    if (first.current.value === "Рубли") {
-      switch (second.current.value) {
+    if (first.current && first.current.value === "Рубли") {
+      switch (second.current && second.current.value) {
         case "Доллар США":
           setResult(input / 80);
           break;
@@ -41,8 +41,8 @@ function Money() {
           setResult(input);
           break;
       }
-    } else if (first.current.value === "Доллар США") {
-      switch (second.current.value) {
+    } else if (first.current && first.current.value === "Доллар США") {
+      switch (second.current && second.current.value) {
         case "Доллар США":
           setResult(input);
           break;
