@@ -6,11 +6,7 @@ interface HistoryProps {
 
 function History({ data }: HistoryProps) {
   const results = data.map((result, index) => {
-    return (
-      <Button key={index} className="draggable">
-        {result}
-      </Button>
-    );
+    return <Button key={index}>{result}</Button>;
   });
 
   return (

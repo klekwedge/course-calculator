@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Button, Flex, Text } from "@chakra-ui/react";
-
 import Numbers from "../Numbers/Numbers";
 import CountButton from "../CountButton/CountButton";
-// import Dragging from "../Dragging/Dragging";
 
 interface ClickCalcProps {
   onClick: (counts: string) => void;
@@ -19,7 +17,6 @@ function ClickCalc({ onClick }: ClickCalcProps) {
   }
 
   return (
-    // <Dragging result={result} setResult={setResult} setHistory={props.onClick}>
     <>
       <Flex
         w="100%"
@@ -87,7 +84,6 @@ function ClickCalc({ onClick }: ClickCalcProps) {
         </Button>
       </Flex>
     </>
-    /* </Dragging> */
   );
 }
 
