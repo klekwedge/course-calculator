@@ -5,11 +5,15 @@ import Numbers from "../Numbers/Numbers";
 import CountButton from "../CountButton/CountButton";
 // import Dragging from "../Dragging/Dragging";
 
-function ClickCalc(props) {
+interface ClickCalcProps {
+  onClick: (counts: string) => void;
+}
+
+function ClickCalc({ onClick }: ClickCalcProps) {
   const [counts, setCounts] = useState("0");
   const [result, setResult] = useState("");
 
-  function applyExpression(countedNumber) {
+  function applyExpression(countedNumber: string) {
     setCounts(countedNumber);
     setResult(eval(counts));
   }
@@ -76,7 +80,7 @@ function ClickCalc(props) {
           onClick={() => {
             setResult(eval(counts));
             setCounts("0");
-            props.onClick(counts);
+            onClick(counts);
           }}
         >
           =

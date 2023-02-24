@@ -1,16 +1,21 @@
 import { Button } from "@chakra-ui/react";
 
+interface CountButtonProps {
+  data: string;
+  expression: string;
+  onClick: (str: string) => void;
+}
 
-function CountButton(props) {
+function CountButton({ data, expression, onClick }: CountButtonProps) {
   const expressions = /\+|\-|\/|\*| /;
-  const lastNumber = props.data[props.data.length - 1];
+  const lastNumber = data[data.length - 1];
 
   function checkExpressionType() {
     if (expressions.test(lastNumber)) {
       return;
     }
 
-    props.onClick(props.data + props.expression);
+    onClick(data + expression);
   }
 
   return (
@@ -21,10 +26,10 @@ function CountButton(props) {
       w="40px"
       h="40px"
       margin="4px"
-      bg='blue.400'
+      bg="blue.400"
       className="droppable"
     >
-      {props.expression}
+      {expression}
     </Button>
   );
 }

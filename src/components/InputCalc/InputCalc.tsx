@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { Input, Text, Flex } from "@chakra-ui/react";
 
-function InputCalc(props) {
+interface InputCalcProps {
+  onKeyDown: (counts: string) => void;
+}
+
+function InputCalc({ onKeyDown }: InputCalcProps) {
   const [counts, setCounts] = useState("");
   const [result, setResult] = useState("");
 
   useEffect(() => {
-    document.querySelector("input").focus();
+    document.querySelector("input")?.focus();
   }, []);
 
-  function updateCounts(e) {
+  const updateCounts: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const expressions = /\+|\-|\/|\*|=|\$|[A-z]| /;
     const lastNumber = e.target.value[e.target.value.length - 2];
 
@@ -28,12 +32,14 @@ function InputCalc(props) {
     setCounts(e.target.value);
   }
 
-  function sendDataToHistory(e) {
+  const sendDataToHistory: React.KeyboardEventHandler<HTMLInputElement> = (
+    e
+  ) => {
     if (e.nativeEvent.key === "Enter") {
-      props.onKeyDown(counts);
-      setCounts('')
+      onKeyDown(counts);
+      setCounts("");
     }
-  }
+  };
 
   return (
     <Flex bg="gray.300" p="0.5" borderRadius="5">
@@ -41,12 +47,8 @@ function InputCalc(props) {
         type="text"
         value={counts}
         border="transparent"
-        onChange={(e) => {
-          updateCounts(e);
-        }}
-        onKeyDown={(e) => {
-          sendDataToHistory(e);
-        }}
+        onChange={(e) => updateCounts(e)}
+        onKeyDown={(e) => sendDataToHistory(e)}
       ></Input>
       <Text textColor="tomato">{result}</Text>
     </Flex>
