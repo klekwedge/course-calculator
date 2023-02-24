@@ -1,13 +1,15 @@
-const cheerio = require("cheerio"),
-  axios = require("axios"),
-  url = "https://www.banki.ru/products/currency/cb/";
+import cheerio from "cheerio";
+import axios from "axios";
 
-const getData = async (currency) => {
-  const array = [];
+const url = "https://www.banki.ru/products/currency/cb/";
+
+const getData = async (currency: string) => {
+  const array: string[] = [];
+
   const response = await axios.get(url);
   const $ = await cheerio.load(response.data);
   const regex = new RegExp(currency);
-  console.log("1221112");
+
   $("tr").each((e, i) => {
     if ($(i).text().match(regex)) {
       $(i)
@@ -15,6 +17,9 @@ const getData = async (currency) => {
         .each((e, x) => array.push($(x).html()));
     }
   });
+
+  console.log(array);
+
   return array[3];
 };
 
