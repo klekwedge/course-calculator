@@ -1,22 +1,25 @@
 import { Select, Flex, Input, Button, Text } from "@chakra-ui/react";
+import { useRef } from "react";
 
 interface ConvertibleProps {
-  convertFunc: () => void;
+  convertFunc: (
+    fieldInput: HTMLSelectElement | null,
+    fieldResult: HTMLSelectElement | null
+  ) => void;
   data: string[];
   result: number;
   setInput: (value: number) => void;
-  firstRef: any;
-  secondRef: any;
 }
 
 function Convertible({
   result,
   data,
-  firstRef,
-  secondRef,
   setInput,
   convertFunc,
 }: ConvertibleProps) {
+  const fieldInput = useRef<HTMLSelectElement>(null);
+  const fieldResult = useRef<HTMLSelectElement>(null);
+
   const selection = data.map((e) => {
     return (
       <option key={e} value={e}>
@@ -39,18 +42,22 @@ function Convertible({
           w="50%"
           onChange={(e) => setInput(Number(e.target.value))}
         />
-        <Select size="md" ref={firstRef}>
+        <Select size="md" ref={fieldInput}>
           {selection}
         </Select>
       </Flex>
 
       <Flex alignItems="center" gap="5px">
         <Text>{result}</Text>
-        <Select size="md" ref={secondRef}>
+        <Select size="md" ref={fieldResult}>
           {selection}
         </Select>
       </Flex>
-      <Button onClick={() => convertFunc()}>Convert</Button>
+      <Button
+        onClick={() => convertFunc(fieldInput.current, fieldResult.current)}
+      >
+        Convert
+      </Button>
     </Flex>
   );
 }
