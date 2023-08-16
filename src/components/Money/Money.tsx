@@ -1,29 +1,11 @@
 import { useState } from "react";
 import Convertible from "../Convertible/Convertible";
-// import getData from "../../helpers/parser.js";
 
 function Money() {
   const [input, setInput] = useState(0);
   const [result, setResult] = useState(0);
 
   const dataMoney = ["Доллар США", "Рубли"];
-
-  // async function convertMoney() {
-  //   getData(first.current && first.current.value).then((x) => {
-  //     // console.log('object');
-  //     switch (second.current.value) {
-  //       case "Доллар США":
-  //         setResult(input);
-  //         break;
-  //       case "Рубли":
-  //         setResult(input * Number(x));
-  //         break;
-  //       default:
-  //         setResult(input);
-  //         break;
-  //     }
-  //   });
-  // }
 
   function convertMoney(
     fieldInput: HTMLSelectElement | null,

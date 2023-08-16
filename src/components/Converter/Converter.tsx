@@ -2,7 +2,6 @@ import { Flex } from "@chakra-ui/react";
 import Money from "../Money/Money";
 
 function Converter() {
-
   return (
     <Flex
       alignItems="center"
