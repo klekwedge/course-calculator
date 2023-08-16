@@ -2,7 +2,7 @@ import { Space, Typography, Select, InputNumber, Button } from 'antd';
 import { useEffect } from 'react';
 import { BsArrowDownUp } from 'react-icons/bs';
 import { getSymbols } from '../../services';
-import useFetch from '../../hooks/fetch';
+import useFetch from '../../hooks/useFetch';
 const { Title } = Typography;
 
 function App() {
