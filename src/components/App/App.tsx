@@ -1,5 +1,8 @@
 import { Space, Typography, Select, InputNumber, Button } from 'antd';
+import { useEffect } from 'react';
 import { BsArrowDownUp } from 'react-icons/bs';
+import { getSymbols } from '../../services';
+import useFetch from '../../hooks/fetch';
 const { Title } = Typography;
 
 function App() {
@@ -8,8 +11,12 @@ function App() {
   };
 
   const onSearch = (value: string) => {
-    console.log('search:', value);
+    console.log(value);
   };
+
+  useEffect(() => {
+    
+  }, []);
 
   return (
     <div className="container">
