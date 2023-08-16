@@ -1,6 +1,6 @@
 import { useState } from "react";
+import Convertible from "../Convertible/Convertible";
 // import getData from "../../helpers/parser.js";
-import Convertible from "../Convertible/Convertible.js";
 
 function Money() {
   const [input, setInput] = useState(0);
