@@ -5,7 +5,7 @@
 
 .container {
     height: 100vh;
-    weight: 100vw;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,10 +15,27 @@
     border-radius: 15px;
     padding: 20px;
     display: flex;
+    gap: 15px;
     width: 100%;
     max-width: 400px;
     flex-direction: column;
     align-items: center;
     background: #ffffff;
     border: 1px solid #f0f0f0;
+    
+}
+
+.content__input {
+    width: 100%;
+    max-width: 200px;
+}
+
+.content__select {
+    width: 100%;
+    max-width: 200px;
+}
+
+.content__button {
+    margin: 0 auto;
+    width: 100%;
 }
