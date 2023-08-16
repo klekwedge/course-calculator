@@ -1,11 +1,15 @@
-import { Box } from '@chakra-ui/react';
-import CustomNumberInput from '../CustomNumberInput/CustomNumberInput';
+import { InputNumber } from 'antd';
+import CustomSelect from '../CustomSelect/CustomSelect';
 
 function App() {
   return (
-    <Box h="90vh">
-      <CustomNumberInput />
-    </Box>
+    <div className="container">
+      <div className="content">
+        <InputNumber size="large" min={1} max={100000} />
+        <CustomSelect />
+        <InputNumber size="large" readOnly />
+      </div>
+    </div>
   );
 }
 
