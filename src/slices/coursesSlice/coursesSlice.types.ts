@@ -1,8 +1,8 @@
 
 export interface ICourseState {
-   course: ICourse | null;
-   symbols: ISymbols[];
-   loading: Loading;
+    course: ICourse | null;
+    symbols: ISymbols[];
+    loading: Loading;
 }
 
 export interface ICourse {
@@ -25,7 +25,8 @@ export interface IInfo {
 }
 
 export interface ISymbols {
-    [index: string]: string
+    value: string
+    label: any;
 }
 
 export type Loading = "loading" | "idle" | "error"

@@ -12,16 +12,21 @@ const initialState: ICourseState = {
     loading: 'idle'
 };
 
-export const fetchCourse = createAsyncThunk('courses/fetchCourse', (arg) => {
-    console.log(arg);
+interface IArg {
+    to: string;
+    from: string;
+    amount: number;
+}
+
+export const fetchCourse = createAsyncThunk('courses/fetchCourse', ({ to, from, amount }: IArg) => {
     const { request } = useFetch();
-    // return request(`${API_DOMAIN}/convert?apikey=${API_KEY}&to=${to}&from=${from}&amount=${amount}`);
+    return request(`${API_DOMAIN}/convert?apikey=${API_KEY}&to=${to}&from=${from}&amount=${amount}`);
 });
 
 
 export const fetchSymbols = createAsyncThunk('courses/fetchSymbols', () => {
     const { request } = useFetch();
-    return request( `${API_DOMAIN}/symbols?apikey=${API_KEY}`);
+    return request(`${API_DOMAIN}/symbols?apikey=${API_KEY}`);
 });
 
 const coursesSlice = createSlice({
@@ -34,7 +39,7 @@ const coursesSlice = createSlice({
             .addCase(fetchSymbols.pending, (state) => {
             })
             .addCase(fetchSymbols.fulfilled, (state, action) => {
-                state.symbols = action.payload
+                state.symbols = Object.entries(action.payload.symbols).map((item) => ({ value: item[0], label: item[1] }))
             })
             .addCase(fetchSymbols.rejected, (state) => {
             })
